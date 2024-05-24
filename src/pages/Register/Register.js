@@ -54,6 +54,7 @@ function Register() {
           size="large" 
           onClick={handleRegister}
         >
+          <Button>This is Bantiya Button</Button>
           Register
         </Button>
         <Button component={Link} to="/login" variant="contained" color="secondary" size="large">
