@@ -1,1 +1,0 @@
-export const LOGO = 'https://logopond.com/logos/4b1dd806a0eedb841f07420e0e796b9b.png'
