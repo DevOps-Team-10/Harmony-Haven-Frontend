@@ -1,24 +1,28 @@
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import Header from "./components/Header";
-import Body from "./components/Body";
+import Header from "./components/Header.js"; // Added .js extension
+import Body from "./components/Body.js"; // Added .js extension
 import React from 'react';
-import Event from './components/Event'
-import Shop from "./components/Shop";
-import Track from "./components/Track";
-import Blog from "./components/Blog";
-import Learn from "./components/Learn";
-import Error from "./components/Error";
+import Event from "./components/Event.js"; // Added .js extension
+import Shop from "./components/shopping/shop.js"; // Added .js extension
+import Track from "./components/Track.js"; // Added .js extension
+import Blog from "./components/Blog.js"; // Added .js extension
+import Learn from "./components/Learn.js"; // Added .js extension
+import Error from "./components/Error.js"; // Added .js extension
 import ReactDOM from 'react-dom/client';
-import './index.css'
+import './index.css';
+
+// Store the token in localStorage
+const authToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoic2ltYSIsImVtYWlsIjoic2ltYTEyM0BnbWFpbC5jb20iLCJpYXQiOjE3MTY3NDUzODEsImV4cCI6MTcxNjgzMTc4MX0.-n0k8ABh5P-TPc8Et6NcT3RgGahHxa0pfZqQv5b7gx8";
+localStorage.setItem('authToken', authToken);
 
 function App() {
   return (
     <div className="App h-screen flex flex-col overflow-hidden">
-    <Header />
-    <div className="flex-grow overflow-hidden">
-      <Outlet />
+      <Header />
+      <div className="flex-grow overflow-hidden">
+        <Outlet />
+      </div>
     </div>
-  </div>
   );
 }
 
