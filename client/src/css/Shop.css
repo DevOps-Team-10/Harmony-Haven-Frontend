@@ -1,0 +1,142 @@
+/* Shop.css */
+/* Add this CSS to Shop.css */
+.shop-page {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    max-height: calc(100vh - 40px); /* Adjust as needed */
+    overflow-y: auto;
+  }
+  
+  .shop-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+  }
+  .product-list {
+    flex: 1;
+    margin-right: 20px;
+  }
+  .product-item {
+    max-width: 100%;
+    border: 1px solid #ddd; /* Add border for better separation */
+    border-radius: 8px;
+    overflow: hidden; /* Ensure the content doesn't overflow */
+  }
+  
+  .product-image {
+    position: relative;
+    padding-bottom: 75%; /* Maintain a 4:3 aspect ratio */
+  }
+  
+  .product-image img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .cart-and-order-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cart {
+    max-width: 300px;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin-bottom: 20px; /* Add some space between the cart and order button */
+  }
+  .cart h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+  }
+  
+  .cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .cart-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    margin-right: 15px;
+    border-radius: 4px;
+  }
+  
+  .cart-item-details {
+    flex: 1;
+  }
+  
+  .cart-item-details p {
+    margin: 0 0 5px;
+  }
+  
+  .cart-item-details button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .cart-item-details button:hover {
+    background-color: #cc0000;
+  }
+  
+  .cart-total {
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .clear-cart-button {
+    background-color: #ff4d4d; /* Red background color */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px; /* Adjust the margin as needed */
+  }
+
+  .clear-cart-button:hover {
+    background-color: #cc0000;
+  }
+  
+
+  .place-order-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .place-order-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .order-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .order-button img {
+    width: 100px; /* Adjust the size of the order logo */
+    height: auto;
+  }
