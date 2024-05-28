@@ -24,6 +24,11 @@ const Body = () => {
             Tracking and Monitoring Progress
           </button>
         </Link>
+        <Link to="/community">
+        <button className="bg-purple-500 hover:bg-purple-600 active:bg-purple-700 text-white font-bold py-8 px-16 rounded-lg transition-colors duration-300 w-full shadow-lg">
+          Connecting with Like-minded Community
+          </button>
+        </Link>
       </div>
       <div className="text-center">
         <h1 className="text-4xl font-bold text-gray-800">
