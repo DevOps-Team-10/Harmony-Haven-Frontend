@@ -1,39 +1,37 @@
 import React, { useState, useContext } from "react";
 import UserContext from '../context/UserContext.js';
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const LandingAuth = () => {
   const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
   const [isRegistered, setIsRegistered] = useState(false);
-  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const [statusMessage, setStatusMessage] = useState("");
-  const [fullName, setFullName] = useState("");
 
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        "/user/register",
-        { fullName, email, username, password },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      setStatusMessage(res?.data?.message);
+      const res = await fetch("/user/register", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, name, password })
+      });
+      
+      const data = await res.json();
+      setStatusMessage(data?.message);
       setTimeout(() => {
         setStatusMessage("");
       }, 1000);
       setIsRegistered(true);
     } catch (error) {
-      setStatusMessage(error?.response?.data?.message);
+      setStatusMessage("");
       setTimeout(() => {
         setStatusMessage("");
       }, 1000);
@@ -43,22 +41,24 @@ const LandingAuth = () => {
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        '/user/login',
-        { email: loginEmail, password: loginPassword },
-        {
-          headers: {
-            "Content-Type": "application/json"
-          }
-        }
-      );
-      setUser(res.data);
-      setStatusMessage(res?.data?.message);
+      const res = await fetch('/user/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: loginEmail, password: loginPassword })
+      });
+      
+      const data = await res.json();
+      console.log(data)
+      setUser(data?.data);
+      setStatusMessage(data?.message);
       setTimeout(() => {
         setStatusMessage("");
       }, 1000);
       navigate('/');
     } catch (error) {
+      console.log(error)
       setStatusMessage(error?.response?.data?.message);
       setTimeout(() => {
         setStatusMessage("");
@@ -69,7 +69,7 @@ const LandingAuth = () => {
   const toggleForm = () => {
     setIsRegistered((prev) => !prev);
     setStatusMessage("");
-    setUsername("");
+    setName("");
     setEmail("");
     setPassword("");
     setLoginEmail("");
@@ -130,25 +130,16 @@ const LandingAuth = () => {
           <h2 className="text-2xl font-bold mb-4">Register</h2>
           <form onSubmit={handleRegisterSubmit} className="space-y-4">
             <div>
-              <label className="block text-gray-700">Full Name</label>
+              <label className="block text-gray-700"> Username</label>
               <input
                 type="text"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
               />
             </div>
-            <div>
-              <label className="block text-gray-700">Username</label>
-              <input
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                required
-              />
-            </div>
+           
 
             <div>
               <label className="block text-gray-700">Email</label>
