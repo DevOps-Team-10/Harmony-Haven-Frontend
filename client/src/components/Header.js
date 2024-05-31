@@ -3,12 +3,22 @@ import { useState, useContext } from 'react';
 import UserContext from '../context/UserContext.js';
 
 const Header = () => {
-  const { setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    const res = await fetch("/user/logout", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorisation': `Bearer ${user.accessToken}`
+      }
+    });
+    const data = await res.json();
+    console.log(data)
     setUser(null);
+    alert(data?.message?.message)
     localStorage.removeItem('authToken');
     localStorage.removeItem('userId');
     navigate('/');
