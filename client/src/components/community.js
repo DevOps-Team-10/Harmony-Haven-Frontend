@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect , useContext} from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../css/Community.css';
 import comm1 from '../assets/Community/team1.jpg';
@@ -6,15 +6,19 @@ import comm2 from '../assets/Community/team2.jpg';
 import comm3 from '../assets/Community/team3.jpg';
 import comm4 from '../assets/Community/team4.jpg';
 
+import UserContext from '../context/UserContext.js';
+
+
 const images = [comm1, comm2, comm3, comm4];
 
 const Community = () => {
+  const userDetails = useContext(UserContext);
   const [communities, setCommunities] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCommunities = async () => {
-      const token = localStorage.getItem('authToken');
+      const token = userDetails.user.accessToken;
   
       try {
         const response = await fetch('/api/community', {

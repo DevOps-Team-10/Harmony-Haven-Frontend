@@ -18,11 +18,11 @@ import { CartProvider } from './context/CartContext.js';
 import UserContext from "./context/UserContext.js";
 
 // Store the token in localStorage
-const authToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSmFjayIsImVtYWlsIjoiamFjazI0QGdtYWlsLmNvbSIsImlhdCI6MTcxNjkxOTMzOCwiZXhwIjoxNzE3MDA1NzM4fQ.k5wPBKlQ8OqfovkMvDvT1w890KM5OSG98DOSTw4A-eE";
-localStorage.setItem('authToken', authToken);
+// const authToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSmFjayIsImVtYWlsIjoiamFjazI0QGdtYWlsLmNvbSIsImlhdCI6MTcxNjkxOTMzOCwiZXhwIjoxNzE3MDA1NzM4fQ.k5wPBKlQ8OqfovkMvDvT1w890KM5OSG98DOSTw4A-eE";
+// localStorage.setItem('authToken', authToken);
 
-const userId = "6656184d0c4cf4b05afad02a";
-localStorage.setItem('userId', userId);
+// const userId = "6656184d0c4cf4b05afad02a";
+// localStorage.setItem('userId', userId);
 
 function App() {
   const [user, setUser] = useState(null);
