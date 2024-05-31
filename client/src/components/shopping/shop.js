@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState , useContext } from 'react';
 import ProductList from './ProductList.js';
 import Cart from './Cart.js'
 import '../../css/Shop.css'
 import { useCart } from '../../context/CartContext.js';
 import OrderDetails from './OrderDetails.js';
 import orderLogo from '../../assets/order-logo.jpg'
+import UserContext from '../../context/UserContext.js';
+
 
 const Shop = () => {
+  const userDetails = useContext(UserContext);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -33,7 +36,7 @@ const Shop = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const token = localStorage.getItem('authToken'); // Assuming the token is stored in localStorage
+      const token = userDetails.user.accessToken; // Assuming the token is stored in localStorage
 
       try {
         const response = await fetch('/user/product', {

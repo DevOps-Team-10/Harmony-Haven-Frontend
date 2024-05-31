@@ -1,26 +1,29 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef , useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import io from 'socket.io-client';
 import axios from 'axios';
 import '../css/CommunityChat.css';
 
+import UserContext from '../context/UserContext.js';
+
+
 const socket = io('/'); // No need to specify URL due to proxy
 
 const CommunityChat = () => {
+  const userDetails = useContext(UserContext);
   const { id } = useParams(); // Community ID from URL
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
   const [userId, setUserId] = useState('');
   const messagesEndRef = useRef(null);
-
   useEffect(() => {
-    setUserId(localStorage.getItem('userId'));
-
+    const token = userDetails.user.accessToken;
+     setUserId(userDetails.user._id);
     const fetchMessages = async () => {
       try {
         const res = await axios.get(`/api/community/${id}/messages`, {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('authToken')}`, // Adjust if token is stored differently
+            'Authorization': `Bearer ${token}`, // Adjust if token is stored differently
           },
         });
         setMessages(res.data.data);
