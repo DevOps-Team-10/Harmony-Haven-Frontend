@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useRef , useContext } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import io from 'socket.io-client';
 import axios from 'axios';
 import '../css/CommunityChat.css';
 
 import UserContext from '../context/UserContext.js';
-
 
 const socket = io('/'); // No need to specify URL due to proxy
 
@@ -16,9 +15,10 @@ const CommunityChat = () => {
   const [message, setMessage] = useState('');
   const [userId, setUserId] = useState('');
   const messagesEndRef = useRef(null);
+
   useEffect(() => {
     const token = userDetails.user.accessToken;
-     setUserId(userDetails.user._id);
+    setUserId(userDetails.user._id);
     const fetchMessages = async () => {
       try {
         const res = await axios.get(`/api/community/${id}/messages`, {
@@ -43,7 +43,7 @@ const CommunityChat = () => {
     return () => {
       socket.off('message');
     };
-  }, [id]);
+  }, [id, userDetails.user.accessToken]);
 
   useEffect(() => {
     if (messagesEndRef.current) {
@@ -55,27 +55,20 @@ const CommunityChat = () => {
     if (!message.trim()) return; // Prevent sending empty messages
 
     try {
-      const newMessage = { userContent: message, userId: { _id: userId, name: 'You' } };
-
-      // Update the local state with the new message immediately
-      setMessages((prevMessages) => [...prevMessages, newMessage]);
-
-      // Clear the input field
-      setMessage('');
-
-      // Send the message to the server
       const res = await axios.post(
         `/api/community/${id}/messages`,
         { userContent: message },
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('authToken')}`,
-          },
         }
-      );
+      });
 
       // Emit the message via WebSocket
       socket.emit('sendMessage', { ...res.data.data, communityId: id });
+
+      // Clear the input field
+      setMessage('');
     } catch (error) {
       console.error('Error sending message:', error);
     }

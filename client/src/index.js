@@ -18,8 +18,8 @@ import UserContext from "./context/UserContext.js";
 import LandingAuth from "./components/LandingAuth.js";
 
 // Store the token in localStorage (assuming you have this functionality)
-const authToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSmFjayIsImVtYWlsIjoiamFjazI0QGdtYWlsLmNvbSIsImlhdCI6MTcxNjkxOTMzOCwiZXhwIjoxNzE3MDA1NzM4fQ.k5wPBKlQ8OqfovkMvDvT1w890KM5OSG98DOSTw4A-eE";
-localStorage.setItem('authToken', authToken);
+// const authToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSmFjayIsImVtYWlsIjoiamFjazI0QGdtYWlsLmNvbSIsImlhdCI6MTcxNjkxOTMzOCwiZXhwIjoxNzE3MDA1NzM4fQ.k5wPBKlQ8OqfovkMvDvT1w890KM5OSG98DOSTw4A-eE";
+// localStorage.setItem('authToken', authToken);
 
 // const userId = "6656184d0c4cf4b05afad02a";
 // localStorage.setItem('userId', userId);
