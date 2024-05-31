@@ -1,6 +1,5 @@
 import { createBrowserRouter, RouterProvider, Outlet, Navigate } from "react-router-dom";
 import Header from "./components/Header.js";
-import LandingAuth from "./components/LandingAuth.js";
 import Body from "./components/Body.js";
 import React, { useEffect, useState } from 'react';
 import Event from "./components/Event.js";
@@ -16,10 +15,11 @@ import AboutMe from "./components/AboutMe.js"; // New component
 import './index.css';
 import { CartProvider } from './context/CartContext.js';
 import UserContext from "./context/UserContext.js";
+import LandingAuth from "./components/LandingAuth.js";
 
-// Store the token in localStorage
-// const authToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSmFjayIsImVtYWlsIjoiamFjazI0QGdtYWlsLmNvbSIsImlhdCI6MTcxNjkxOTMzOCwiZXhwIjoxNzE3MDA1NzM4fQ.k5wPBKlQ8OqfovkMvDvT1w890KM5OSG98DOSTw4A-eE";
-// localStorage.setItem('authToken', authToken);
+// Store the token in localStorage (assuming you have this functionality)
+const authToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSmFjayIsImVtYWlsIjoiamFjazI0QGdtYWlsLmNvbSIsImlhdCI6MTcxNjkxOTMzOCwiZXhwIjoxNzE3MDA1NzM4fQ.k5wPBKlQ8OqfovkMvDvT1w890KM5OSG98DOSTw4A-eE";
+localStorage.setItem('authToken', authToken);
 
 // const userId = "6656184d0c4cf4b05afad02a";
 // localStorage.setItem('userId', userId);
@@ -45,7 +45,7 @@ function App() {
   return (
     <UserContext.Provider value={{ user, setUser }}>
       <div className="App h-screen flex flex-col overflow-hidden">
-        {user ? (
+        {user ? ( // Check if user is logged in
           <>
             <Header />
             <div className="flex-grow overflow-hidden">

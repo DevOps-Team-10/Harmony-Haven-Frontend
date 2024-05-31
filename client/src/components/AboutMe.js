@@ -3,9 +3,6 @@ import UserContext from '../context/UserContext.js';
 
 const AboutMe = () => {
   const user = useContext(UserContext);
-  console.log("User: ", user)
-  const email = "email"
-  const username = "username"
   return (
     <div className="container mx-auto mt-10 w-4/12 ">
       <h1 className="text-3xl font-semibold mb-5">About Me</h1>

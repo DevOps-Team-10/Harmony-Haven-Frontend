@@ -1,11 +1,29 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect, useRef } from 'react'; // Import useEffect and useRef
 import UserContext from '../context/UserContext.js';
 
 const Header = () => {
   const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null); // Create a ref for the dropdown menu
+
+  useEffect(() => {
+    // Add event listener to the document body to handle clicks outside of the dropdown
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    // Attach the event listener when the component mounts
+    document.body.addEventListener('click', handleClickOutside);
+
+    // Remove the event listener when the component unmounts
+    return () => {
+      document.body.removeEventListener('click', handleClickOutside);
+    };
+  }, []); // Empty dependency array to ensure the effect runs only once when the component mounts
 
   const handleLogout = async () => {
     const res = await fetch("/user/logout", {
@@ -16,9 +34,8 @@ const Header = () => {
       }
     });
     const data = await res.json();
-    console.log(data)
     setUser(null);
-    alert(data?.message?.message)
+    alert(data?.message?.message);
     localStorage.removeItem('authToken');
     localStorage.removeItem('userId');
     navigate('/');
@@ -44,7 +61,7 @@ const Header = () => {
       </div>
       <div>
         <ul className="flex space-x-4">
-          <li className="relative">
+          <li className="relative" ref={dropdownRef}> {/* Attach the ref to the container */}
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               className="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded transition-colors duration-300"

@@ -3,7 +3,7 @@ import UserContext from '../context/UserContext.js';
 import { useNavigate } from "react-router-dom";
 
 const LandingAuth = () => {
-  const { setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
   const [isRegistered, setIsRegistered] = useState(false);
   const [name, setName] = useState("");
@@ -23,7 +23,7 @@ const LandingAuth = () => {
         },
         body: JSON.stringify({ email, name, password })
       });
-      
+
       const data = await res.json();
       setStatusMessage(data?.message);
       setTimeout(() => {
@@ -31,7 +31,7 @@ const LandingAuth = () => {
       }, 1000);
       setIsRegistered(true);
     } catch (error) {
-      setStatusMessage("");
+      setStatusMessage(error?.message || "Registration failed");
       setTimeout(() => {
         setStatusMessage("");
       }, 1000);
@@ -48,24 +48,26 @@ const LandingAuth = () => {
         },
         body: JSON.stringify({ email: loginEmail, password: loginPassword })
       });
-      
+
       const data = await res.json();
-      console.log(data)
-      setUser(data?.data);
-      setStatusMessage(data?.message);
-      setTimeout(() => {
-        setStatusMessage("");
-      }, 1000);
-      navigate('/');
+
+      if (data.success === true) {
+        setUser(data.data); // Update user context
+        setStatusMessage(data.message.message);
+        navigate('/'); // Redirect to home route upon successful login
+      } else {
+        setStatusMessage(data.message.message || "Login failed");
+        setTimeout(() => {
+          setStatusMessage("");
+        }, 1000);
+      }
     } catch (error) {
-      console.log(error)
-      setStatusMessage(error?.response?.data?.message);
+      setStatusMessage(error?.response?.data?.message || "Login failed");
       setTimeout(() => {
         setStatusMessage("");
       }, 1000);
     }
   };
-
   const toggleForm = () => {
     setIsRegistered((prev) => !prev);
     setStatusMessage("");
@@ -130,7 +132,7 @@ const LandingAuth = () => {
           <h2 className="text-2xl font-bold mb-4">Register</h2>
           <form onSubmit={handleRegisterSubmit} className="space-y-4">
             <div>
-              <label className="block text-gray-700"> Username</label>
+              <label className="block text-gray-700">Username</label>
               <input
                 type="text"
                 value={name}
@@ -139,8 +141,6 @@ const LandingAuth = () => {
                 required
               />
             </div>
-           
-
             <div>
               <label className="block text-gray-700">Email</label>
               <input
