@@ -3,7 +3,7 @@ import UserContext from '../context/UserContext.js';
 import { useNavigate } from "react-router-dom";
 
 const LandingAuth = () => {
-  const { user, setUser } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
   const [isRegistered, setIsRegistered] = useState(false);
   const [name, setName] = useState("");
