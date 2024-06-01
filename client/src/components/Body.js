@@ -19,9 +19,9 @@ const Body = () => {
             Accessing Resources and Insights
           </button>
         </Link>
-        <Link to="/track">
+        <Link to="/consultation">
           <button className="bg-yellow-500 hover:bg-yellow-600 active:bg-yellow-700 text-white font-bold py-8 px-16 rounded-lg transition-colors duration-300 w-full shadow-lg">
-            Tracking and Monitoring Progress
+            Consultation
           </button>
         </Link>
         <Link to="/community">

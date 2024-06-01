@@ -30,30 +30,30 @@ const Header = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorisation': `Bearer ${user.accessToken}`
+        'Authorization': `Bearer ${user.accessToken}`
       }
     });
     const data = await res.json();
     setUser(null);
-    alert(data?.message?.message);
+    alert(data?.message);
     localStorage.removeItem('authToken');
     localStorage.removeItem('userId');
     navigate('/');
   };
 
   return (
-    <header className="bg-black text-white p-4 rounded-lg shadow-lg flex justify-between items-center w-11/12 m-auto my-2">
+    <header className="bg-lime-700 text-white p-4 rounded-lg shadow-lg flex justify-between items-center w-11/12 m-auto my-2">
       <div className="flex items-center">
         <img src="app-logo.png" alt="app-logo" className="h-14 w-14 mr-2 rounded-md" />
         <span className="text-2xl font-bold text-gray-300">Harmony Heaven</span>
         <ul className="flex space-x-4 ml-8">
           <li>
-            <Link to='/' className="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded transition-colors duration-300">
+            <Link to='/' className=" bg-gray-800 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded transition-colors duration-300">
               Home
             </Link>
           </li>
           <li>
-            <Link to='/events' className="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded transition-colors duration-300">
+            <Link to='/events' className="bg-gray-800 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded transition-colors duration-300">
               Events
             </Link>
           </li>
@@ -64,7 +64,7 @@ const Header = () => {
           <li className="relative" ref={dropdownRef}> {/* Attach the ref to the container */}
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded transition-colors duration-300"
+              className="bg-gray-800 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded transition-colors duration-300"
             >
               Profile
             </button>

@@ -4,7 +4,7 @@ import Body from "./components/Body.js";
 import React, { useEffect, useState } from 'react';
 import Event from "./components/Event.js";
 import Shop from "./components/shopping/shop.js";
-import Track from "./components/Track.js";
+import Consultants from "./components/Consultants.js";
 import Blog from "./components/Blog.js";
 import Learn from "./components/Learn.js";
 import Error from "./components/Error.js";
@@ -74,7 +74,7 @@ const appRouter = createBrowserRouter([
       { path: '/events', element: <Event /> },
       { path: '/learn', element: <Learn /> },
       { path: '/shop', element: <Shop /> },
-      { path: '/track', element: <Track /> },
+      { path: '/consultation', element: <Consultants /> },
       { path: '/blog', element: <Blog /> },
       { path: '/community', element: <Community /> },
       { path: '/community/:id/chat', element: <CommunityChat /> },

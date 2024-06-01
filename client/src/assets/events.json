@@ -1,0 +1,46 @@
+{
+    "events": [
+        {
+            "id": 1,
+            "title": "Harmony Music Festival",
+            "date": "2024-06-05",
+            "time": "10:00 AM",
+            "description": "A day filled with live music performances."
+        },
+        {
+            "id": 2,
+            "title": "Yoga and Wellness Retreat",
+            "date": "2024-06-10",
+            "time": "08:00 AM",
+            "description": "A retreat focusing on yoga and wellness activities."
+        },
+        {
+            "id": 3,
+            "title": "Harmony Tech Conference",
+            "date": "2024-06-15",
+            "time": "09:00 AM",
+            "description": "A conference discussing the latest in tech and innovation."
+        },
+        {
+            "id": 4,
+            "title": "Art and Craft Workshop",
+            "date": "2024-06-20",
+            "time": "11:00 AM",
+            "description": "A workshop for enthusiasts of art and craft."
+        },
+        {
+            "id": 5,
+            "title": "Community Service Day",
+            "date": "2024-06-25",
+            "time": "01:00 PM",
+            "description": "A day dedicated to community service and volunteering."
+        },
+        {
+            "id": 6,
+            "title": "Annual General Meeting",
+            "date": "2024-06-28",
+            "time": "03:00 PM",
+            "description": "Annual meeting to discuss company progress and future plans."
+        }
+    ]
+}
