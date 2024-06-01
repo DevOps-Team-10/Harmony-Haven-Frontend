@@ -52,6 +52,7 @@ const CommunityChat = () => {
   }, [messages]);
 
   const sendMessage = async () => {
+    const token = userDetails.user.accessToken;
     if (!message.trim()) return; // Prevent sending empty messages
 
     try {
