@@ -60,7 +60,7 @@ const CommunityChat = () => {
         { userContent: message },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+            'Authorization': `Bearer ${token}`,
         }
       });
 
