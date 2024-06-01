@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "type": "module",
-  "proxy": "http://35.169.199.81:5005",
+  "proxy": "http://35.169.199.81:5005/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
